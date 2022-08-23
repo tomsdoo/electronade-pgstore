@@ -19,5 +19,8 @@
   "homepage": "https://github.com/tomsdoo/electronade-pgstore#readme",
   "dependencies": {
     "@tomsd/pgkvs": "^1.0.0"
+  },
+  "devDependencies": {
+    "electron": "^20.0.3"
   }
 }
