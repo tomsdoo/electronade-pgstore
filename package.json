@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/tomsdoo/electronade-pgstore/issues"
   },
-  "homepage": "https://github.com/tomsdoo/electronade-pgstore#readme"
+  "homepage": "https://github.com/tomsdoo/electronade-pgstore#readme",
+  "dependencies": {
+    "@tomsd/pgkvs": "^1.0.0"
+  }
 }
