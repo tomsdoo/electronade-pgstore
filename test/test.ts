@@ -13,24 +13,22 @@ let handleStore: {
   [key: string]: Function;
 };
 
+let connectionString: string;
+let tableName: string;
+let testId: string;
+
 describe("preloadObject to handles", () => {
   before(() => {
     handleStore = Object.fromEntries(
       handles.map(({ eventName, handler }) => [ eventName, handler ])
     );
+
+    connectionString = "connection string";
+    tableName = "table name";
+    testId = "test-id";
   });
 
   it("electronade-pgstore:get", async () => {
-    const [
-      connectionString,
-      tableName,
-      testId
-    ] = [
-      "connection string",
-      "mytable",
-      "test id"
-    ];
-
     assert(
       await eval(preloadObject.pgstore.get.toString())
         (connectionString, tableName, testId)
@@ -39,14 +37,6 @@ describe("preloadObject to handles", () => {
   });
 
   it("electronade-pgstore:getall", async () => {
-    const [
-      connectionString,
-      tableName
-    ] = [
-      "connection string",
-      "mytable"
-    ];
-
     assert(
       await eval(preloadObject.pgstore.getAll.toString())
         (connectionString, tableName)
