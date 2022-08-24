@@ -16,6 +16,7 @@ let handleStore: {
 let connectionString: string;
 let tableName: string;
 let testId: string;
+let item: object;
 
 describe("preloadObject to handles", () => {
   before(() => {
@@ -26,6 +27,7 @@ describe("preloadObject to handles", () => {
     connectionString = "connection string";
     tableName = "table name";
     testId = "test-id";
+    item = { message: "test" };
   });
 
   it("electronade-pgstore:get", async () => {
@@ -47,9 +49,8 @@ describe("preloadObject to handles", () => {
   it("electronade-pgstore:save", async () => {
     assert(
       await eval(preloadObject.pgstore.save.toString())
-        (connectionString, tableName)
+        (connectionString, tableName, item)
       in handleStore
     );
   });
-
 });
