@@ -83,4 +83,37 @@ describe("preloadObject", () => {
     mocked.verify();
     mocked.restore();
   });
+
+  it("pgstore.save exists", () => {
+    assert(preloadObject.pgstore.save);
+  });
+
+  it("pgstore.save calling", async () => {
+    const mocked = mock(ipcRenderer);
+    const item = { name: "test" };
+    const mockedValue = { _id: testId };
+
+    mocked
+      .expects("invoke")
+      .once()
+      .withArgs(
+        "electronade-pgstore:save",
+        {
+          connectionString,
+          tableName,
+          item
+        }
+      )
+      .returns(Promise.resolve(mockedValue));
+
+    assert.equal(
+      await eval(preloadObject.pgstore.save.toString())
+        (connectionString, tableName, item)
+        .then((result: any) => JSON.stringify(result)),
+      JSON.stringify(mockedValue)
+    );
+
+    mocked.verify();
+    mocked.restore();
+  });
 });

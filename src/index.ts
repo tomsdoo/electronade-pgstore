@@ -29,6 +29,21 @@ export const handles = [
         tableName: string;
       }
     ) => new PgKvs(connectionString, tableName).getAll()
+  },
+  {
+    eventName: "electronade-pgstore:save",
+    handler: (
+      event:any,
+      {
+        connectionString,
+        tableName,
+        item
+      }: {
+        connectionString: string;
+        tableName: string;
+        item: object;
+      }
+    ) => new PgKvs(connectionString, tableName).upsert(item)
   }
 ];
 
@@ -54,6 +69,18 @@ export const preloadObject = {
       {
         connectionString,
         tableName
+      }
+    ),
+    save: (
+      connectionString: string,
+      tableName: string,
+      item: object
+    ) => ipcRenderer.invoke(
+      "electronade-pgstore:save",
+      {
+        connectionString,
+        tableName,
+        item
       }
     )
   }
