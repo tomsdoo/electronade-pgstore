@@ -16,6 +16,19 @@ export const handles = [
         id: string;
       }
     ) => new PgKvs(connectionString, tableName).get(id)
+  },
+  {
+    eventName: "electronade-pgstore:getall",
+    handler: (
+      event: any,
+      {
+        connectionString,
+        tableName
+      }: {
+        connectionString: string;
+        tableName: string;
+      }
+    ) => new PgKvs(connectionString, tableName).getAll()
   }
 ];
 
@@ -31,6 +44,16 @@ export const preloadObject = {
         connectionString,
         tableName,
         id
+      }
+    ),
+    getAll: (
+      connectionString: string,
+      tableName: string
+    ) => ipcRenderer.invoke(
+      "electronade-pgstore:getall",
+      {
+        connectionString,
+        tableName
       }
     )
   }
