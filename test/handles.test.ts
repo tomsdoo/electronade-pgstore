@@ -27,4 +27,10 @@ describe("handles", () => {
       "electronade-pgstore:getall" in handleStore
     );
   });
+
+  it("electronade-pgstore:save eventName exists", () => {
+    assert(
+      "electronade-pgstore:save" in handleStore
+    );
+  });
 });
