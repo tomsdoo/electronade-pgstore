@@ -10,24 +10,25 @@ const ipcRenderer: {
   invoke: (eventName: string, ...args: any[]) => Promise.resolve(eventName)
 };
 
+let connectionString: string;
+let tableName: string;
+let testId: string;
+
 describe("preloadObject", () => {
+  before(() => {
+    connectionString = "dummy connection string";
+    tableName = "tablename";
+    testId = "test-id";
+  });
+
   it("pgstore.get exists", () => {
     assert(preloadObject.pgstore.get);
   });
 
   it("pgstore:get calling", async () => {
     const mocked = mock(ipcRenderer);
-    const [
-      connectionString,
-      tableName,
-      testId,
-      mockedValue
-    ] = [
-      "dummy connection string",
-      "mytable",
-      "test id",
-      { _id: "test id" }
-    ];
+    const mockedValue = { _id: "test id" };
+
     mocked
       .expects("invoke")
       .once()
@@ -58,15 +59,7 @@ describe("preloadObject", () => {
 
   it("pgstore.getAll calling", async () => {
     const mocked = mock(ipcRenderer);
-    const [
-      connectionString,
-      tableName,
-      mockedValue
-    ] = [
-      "dummy connection string",
-      "mytable",
-      [{ _id: "test id" }]
-    ];
+    const mockedValue = [{ _id: "test id" }];
 
     mocked
       .expects("invoke")
