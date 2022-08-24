@@ -38,4 +38,20 @@ describe("preloadObject to handles", () => {
     );
   });
 
+  it("electronade-pgstore:getall", async () => {
+    const [
+      connectionString,
+      tableName
+    ] = [
+      "connection string",
+      "mytable"
+    ];
+
+    assert(
+      await eval(preloadObject.pgstore.getAll.toString())
+        (connectionString, tableName)
+      in handleStore
+    );
+  });
+
 });
