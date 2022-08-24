@@ -44,4 +44,12 @@ describe("preloadObject to handles", () => {
     );
   });
 
+  it("electronade-pgstore:save", async () => {
+    assert(
+      await eval(preloadObject.pgstore.save.toString())
+        (connectionString, tableName)
+      in handleStore
+    );
+  });
+
 });
