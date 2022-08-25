@@ -44,6 +44,21 @@ export const handles = [
         item: object;
       }
     ) => new PgKvs(connectionString, tableName).upsert(item)
+  },
+  {
+    eventName: "electronade-pgstore:remove",
+    handler: (
+      event: any,
+      {
+        connectionString,
+        tableName,
+        id
+      }: {
+        connectionString: string;
+        tableName: string;
+        id: string;
+      }
+    ) => new PgKvs(connectionString, tableName).remove(id)
   }
 ];
 
@@ -81,6 +96,18 @@ export const preloadObject = {
         connectionString,
         tableName,
         item
+      }
+    ),
+    remove: (
+      connectionString: string,
+      tableName: string,
+      id: string
+    ) => ipcRenderer.invoke(
+      "electronade-pgstore:remove",
+      {
+        connectionString,
+        tableName,
+        id
       }
     )
   }
