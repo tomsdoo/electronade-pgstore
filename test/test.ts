@@ -53,4 +53,12 @@ describe("preloadObject to handles", () => {
       in handleStore
     );
   });
+
+  it("electronade-pgstore:remove", async () => {
+    assert(
+      await eval(preloadObject.pgstore.remove.toString())
+        (connectionString, tableName, testId)
+      in handleStore
+    );
+  });
 });
