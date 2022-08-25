@@ -116,4 +116,35 @@ describe("preloadObject", () => {
     mocked.verify();
     mocked.restore();
   });
+
+  it("pgstore.remove exists", () => {
+    assert(preloadObject.pgstore.remove);
+  });
+
+  it("pgstore.remove calling", async () => {
+    const mocked = mock(ipcRenderer);
+    const mockedValue = undefined;
+
+    mocked
+      .expects("invoke")
+      .once()
+      .withArgs(
+        "electronade-pgstore:remove",
+        {
+          connectionString,
+          tableName,
+          id: testId
+        }
+      )
+      .returns(Promise.resolve(mockedValue));
+
+    assert.equal(
+      await eval(preloadObject.pgstore.remove.toString())
+        (connectionString, tableName, testId),
+      mockedValue
+    );
+
+    mocked.verify();
+    mocked.restore();
+  });
 });
