@@ -1,6 +1,6 @@
 # electronade-pgstore
 
-It's a package for electronade that provides stre feature using postgresql.
+It's a package for electronade that provides store feature using postgresql.
 
 # Installation
 ``` shell
