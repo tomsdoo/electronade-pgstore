@@ -1,10 +1,11 @@
 import { PgKvs } from "@tomsd/pgkvs";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { ipcRenderer } = require("electron");
 
 export const handles = [
   {
     eventName: "electronade-pgstore:get",
-    handler: (
+    handler: async (
       event: any,
       {
         connectionString,
@@ -15,11 +16,11 @@ export const handles = [
         tableName: string;
         id: string;
       }
-    ) => new PgKvs(connectionString, tableName).get(id),
+    ) => await new PgKvs(connectionString, tableName).get(id),
   },
   {
     eventName: "electronade-pgstore:getall",
-    handler: (
+    handler: async (
       event: any,
       {
         connectionString,
@@ -28,11 +29,11 @@ export const handles = [
         connectionString: string;
         tableName: string;
       }
-    ) => new PgKvs(connectionString, tableName).getAll(),
+    ) => await new PgKvs(connectionString, tableName).getAll(),
   },
   {
     eventName: "electronade-pgstore:save",
-    handler: (
+    handler: async (
       event: any,
       {
         connectionString,
@@ -43,11 +44,11 @@ export const handles = [
         tableName: string;
         item: object;
       }
-    ) => new PgKvs(connectionString, tableName).upsert(item),
+    ) => await new PgKvs(connectionString, tableName).upsert(item),
   },
   {
     eventName: "electronade-pgstore:remove",
-    handler: (
+    handler: async (
       event: any,
       {
         connectionString,
@@ -58,31 +59,31 @@ export const handles = [
         tableName: string;
         id: string;
       }
-    ) => new PgKvs(connectionString, tableName).remove(id),
+    ) => await new PgKvs(connectionString, tableName).remove(id),
   },
 ];
 
 export const preloadObject = {
   pgstore: {
-    get: (connectionString: string, tableName: string, id: string) =>
-      ipcRenderer.invoke("electronade-pgstore:get", {
+    get: async (connectionString: string, tableName: string, id: string) =>
+      await ipcRenderer.invoke("electronade-pgstore:get", {
         connectionString,
         tableName,
         id,
       }),
-    getAll: (connectionString: string, tableName: string) =>
-      ipcRenderer.invoke("electronade-pgstore:getall", {
+    getAll: async (connectionString: string, tableName: string) =>
+      await ipcRenderer.invoke("electronade-pgstore:getall", {
         connectionString,
         tableName,
       }),
-    save: (connectionString: string, tableName: string, item: object) =>
-      ipcRenderer.invoke("electronade-pgstore:save", {
+    save: async (connectionString: string, tableName: string, item: object) =>
+      await ipcRenderer.invoke("electronade-pgstore:save", {
         connectionString,
         tableName,
         item,
       }),
-    remove: (connectionString: string, tableName: string, id: string) =>
-      ipcRenderer.invoke("electronade-pgstore:remove", {
+    remove: async (connectionString: string, tableName: string, id: string) =>
+      await ipcRenderer.invoke("electronade-pgstore:remove", {
         connectionString,
         tableName,
         id,

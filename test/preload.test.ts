@@ -7,7 +7,7 @@ import { preloadObject } from "../src/";
 const ipcRenderer: {
   invoke: (eventName: string, ...args: any[]) => Promise<any>;
 } = {
-  invoke: (eventName: string, ...args: any[]) => Promise.resolve(eventName),
+  invoke: async (eventName: string, ...args: any[]) => await Promise.resolve(eventName),
 };
 
 let connectionString: string;
@@ -40,6 +40,7 @@ describe("preloadObject", () => {
       .returns(Promise.resolve(mockedValue));
 
     assert.equal(
+      // eslint-disable-next-line no-eval
       await eval(preloadObject.pgstore.get.toString())(
         connectionString,
         tableName,
@@ -70,6 +71,7 @@ describe("preloadObject", () => {
       .returns(Promise.resolve(mockedValue));
 
     assert.equal(
+      // eslint-disable-next-line no-eval
       await eval(preloadObject.pgstore.getAll.toString())(
         connectionString,
         tableName
@@ -101,6 +103,7 @@ describe("preloadObject", () => {
       .returns(Promise.resolve(mockedValue));
 
     assert.equal(
+      // eslint-disable-next-line no-eval
       await eval(preloadObject.pgstore.save.toString())(
         connectionString,
         tableName,
@@ -132,6 +135,7 @@ describe("preloadObject", () => {
       .returns(Promise.resolve(mockedValue));
 
     assert.equal(
+      // eslint-disable-next-line no-eval
       await eval(preloadObject.pgstore.remove.toString())(
         connectionString,
         tableName,
