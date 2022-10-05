@@ -3,10 +3,11 @@ import { strict as assert } from "assert";
 
 import { handles, preloadObject } from "../src/";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ipcRenderer: {
   invoke: (eventName: string, ...args: any[]) => Promise<any>;
 } = {
-  invoke: (eventName: string) => Promise.resolve(eventName),
+  invoke: async (eventName: string) => await Promise.resolve(eventName),
 };
 
 let handleStore: {
@@ -32,6 +33,7 @@ describe("preloadObject to handles", () => {
 
   it("electronade-pgstore:get", async () => {
     assert(
+      // eslint-disable-next-line no-eval
       (await eval(preloadObject.pgstore.get.toString())(
         connectionString,
         tableName,
@@ -42,6 +44,7 @@ describe("preloadObject to handles", () => {
 
   it("electronade-pgstore:getall", async () => {
     assert(
+      // eslint-disable-next-line no-eval
       (await eval(preloadObject.pgstore.getAll.toString())(
         connectionString,
         tableName
@@ -51,6 +54,7 @@ describe("preloadObject to handles", () => {
 
   it("electronade-pgstore:save", async () => {
     assert(
+      // eslint-disable-next-line no-eval
       (await eval(preloadObject.pgstore.save.toString())(
         connectionString,
         tableName,
@@ -61,6 +65,7 @@ describe("preloadObject to handles", () => {
 
   it("electronade-pgstore:remove", async () => {
     assert(
+      // eslint-disable-next-line no-eval
       (await eval(preloadObject.pgstore.remove.toString())(
         connectionString,
         tableName,
