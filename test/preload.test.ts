@@ -7,7 +7,7 @@ import { preloadObject } from "../src/";
 const ipcRenderer: {
   invoke: (eventName: string, ...args: any[]) => Promise<any>;
 } = {
-  invoke: (eventName: string, ...args: any[]) => Promise.resolve(eventName)
+  invoke: (eventName: string, ...args: any[]) => Promise.resolve(eventName),
 };
 
 let connectionString: string;
@@ -32,20 +32,19 @@ describe("preloadObject", () => {
     mocked
       .expects("invoke")
       .once()
-      .withArgs(
-        "electronade-pgstore:get",
-        {
-          connectionString,
-          tableName,
-          id: testId
-        }
-      )
+      .withArgs("electronade-pgstore:get", {
+        connectionString,
+        tableName,
+        id: testId,
+      })
       .returns(Promise.resolve(mockedValue));
 
     assert.equal(
-      await eval(preloadObject.pgstore.get.toString())
-        (connectionString, tableName, testId)
-        .then((result: any) => JSON.stringify(result)),
+      await eval(preloadObject.pgstore.get.toString())(
+        connectionString,
+        tableName,
+        testId
+      ).then((result: any) => JSON.stringify(result)),
       JSON.stringify(mockedValue)
     );
 
@@ -64,19 +63,17 @@ describe("preloadObject", () => {
     mocked
       .expects("invoke")
       .once()
-      .withArgs(
-        "electronade-pgstore:getall",
-        {
-          connectionString,
-          tableName
-        }
-      )
+      .withArgs("electronade-pgstore:getall", {
+        connectionString,
+        tableName,
+      })
       .returns(Promise.resolve(mockedValue));
 
     assert.equal(
-      await eval(preloadObject.pgstore.getAll.toString())
-        (connectionString, tableName)
-        .then((result: any) => JSON.stringify(result)),
+      await eval(preloadObject.pgstore.getAll.toString())(
+        connectionString,
+        tableName
+      ).then((result: any) => JSON.stringify(result)),
       JSON.stringify(mockedValue)
     );
 
@@ -96,20 +93,19 @@ describe("preloadObject", () => {
     mocked
       .expects("invoke")
       .once()
-      .withArgs(
-        "electronade-pgstore:save",
-        {
-          connectionString,
-          tableName,
-          item
-        }
-      )
+      .withArgs("electronade-pgstore:save", {
+        connectionString,
+        tableName,
+        item,
+      })
       .returns(Promise.resolve(mockedValue));
 
     assert.equal(
-      await eval(preloadObject.pgstore.save.toString())
-        (connectionString, tableName, item)
-        .then((result: any) => JSON.stringify(result)),
+      await eval(preloadObject.pgstore.save.toString())(
+        connectionString,
+        tableName,
+        item
+      ).then((result: any) => JSON.stringify(result)),
       JSON.stringify(mockedValue)
     );
 
@@ -128,19 +124,19 @@ describe("preloadObject", () => {
     mocked
       .expects("invoke")
       .once()
-      .withArgs(
-        "electronade-pgstore:remove",
-        {
-          connectionString,
-          tableName,
-          id: testId
-        }
-      )
+      .withArgs("electronade-pgstore:remove", {
+        connectionString,
+        tableName,
+        id: testId,
+      })
       .returns(Promise.resolve(mockedValue));
 
     assert.equal(
-      await eval(preloadObject.pgstore.remove.toString())
-        (connectionString, tableName, testId),
+      await eval(preloadObject.pgstore.remove.toString())(
+        connectionString,
+        tableName,
+        testId
+      ),
       mockedValue
     );
 

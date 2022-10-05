@@ -10,33 +10,23 @@ let handleStore: {
 describe("handles", () => {
   before(() => {
     handleStore = Object.fromEntries(
-      handles.map(
-        ({ eventName, handler }) => [ eventName, handler ]
-      )
+      handles.map(({ eventName, handler }) => [eventName, handler])
     );
   });
 
   it("electronade-pgstore:get eventName exists", () => {
-    assert(
-      "electronade-pgstore:get" in handleStore
-    );
+    assert("electronade-pgstore:get" in handleStore);
   });
 
   it("electronade-pgstore:getall eventName exists", () => {
-    assert(
-      "electronade-pgstore:getall" in handleStore
-    );
+    assert("electronade-pgstore:getall" in handleStore);
   });
 
   it("electronade-pgstore:save eventName exists", () => {
-    assert(
-      "electronade-pgstore:save" in handleStore
-    );
+    assert("electronade-pgstore:save" in handleStore);
   });
 
   it("electronade-pgstore:remove eventName exists", () => {
-    assert(
-      "electronade-pgstore:remove" in handleStore
-    );
+    assert("electronade-pgstore:remove" in handleStore);
   });
 });
