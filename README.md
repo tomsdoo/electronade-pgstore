@@ -1,6 +1,7 @@
 # electronade-pgstore
 
-It's a package for electronade that provides store feature using postgresql.
+It's a package for electronade that provides store feature using postgresql.  
+See [electronade-pgstore.netlify.app](https://electronade-pgstore.netlify.app/) for details.
 
 ![npm](https://img.shields.io/npm/v/electronade-pgstore)
 ![NPM](https://img.shields.io/npm/l/electronade-pgstore)
