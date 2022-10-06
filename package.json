@@ -7,9 +7,10 @@
   "types": "dist/esm/index.d.ts",
   "scripts": {
     "build": "tsc --project tsconfig.cjs.json && tsc --project tsconfig.esm.json",
-    "format": "npm run format:src && npm run format:test",
+    "format": "npm run format:src && npm run format:test && npm run format:document",
     "format:src": "prettier --write src/**/*.ts",
     "format:test": "prettier --write test/**/*.ts",
+    "format:document": "prettier --write docs/**/*.html",
     "lint:src": "eslint src/**/*.ts",
     "lint:test": "eslint test/**/*.ts",
     "prepare": "husky install",
