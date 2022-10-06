@@ -7,7 +7,8 @@ import { preloadObject } from "../src/";
 const ipcRenderer: {
   invoke: (eventName: string, ...args: any[]) => Promise<any>;
 } = {
-  invoke: async (eventName: string, ...args: any[]) => await Promise.resolve(eventName),
+  invoke: async (eventName: string, ...args: any[]) =>
+    await Promise.resolve(eventName),
 };
 
 let connectionString: string;
