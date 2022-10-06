@@ -1,6 +1,6 @@
 # electronade-pgstore
 
-It's a package for electronade that provides store feature using postgresql.
+It's a package for [electronade](https://electronade.netlify.app/) that provides store feature using postgresql.
 
 ![npm](https://img.shields.io/npm/v/electronade-pgstore)
 ![NPM](https://img.shields.io/npm/l/electronade-pgstore)
@@ -10,12 +10,14 @@ It's a package for electronade that provides store feature using postgresql.
 
 [![](https://nodei.co/npm/electronade-pgstore.svg?mini=true)](https://www.npmjs.com/package/electronade-pgstore)
 
-# Installation
+## installation
+
 ``` shell
 npm install electronade-pgstore
 ```
 
-# What Exposed
+## interfaces
+
 ``` typescript
 electronade: {
   pgstore: {
@@ -45,7 +47,7 @@ electronade: {
 }
 ```
 
-# Usage
+# usage
 See electronade usage for details.
 
 ``` javascript
